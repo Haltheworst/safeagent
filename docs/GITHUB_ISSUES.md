@@ -12,8 +12,8 @@ Backlog → Ready → In Progress → In Review → Done. `in-progress` includes
 
 | Planned ID | Issue title | Actual GitHub issue number | GitHub issue URL | Milestone | Priority | Dependencies | Current status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [SA-001](issues/SA-001.md) | Bootstrap the runnable project | — | — | M1 | P0 | — | in-progress |
-| [SA-002](issues/SA-002.md) | Add migrations, persistent storage and repeatable reset | — | — | M1 | P0 | SA-001 | in-progress |
+| [SA-001](issues/SA-001.md) | Bootstrap the runnable project | — | — | M1 | P0 | — | done-local |
+| [SA-002](issues/SA-002.md) | Add migrations, persistent storage and repeatable reset | — | — | M1 | P0 | SA-001 | done-local |
 | [SA-003](issues/SA-003.md) | Expand versioned synthetic application fixtures | — | — | M1 | P0 | SA-002 | in-progress |
 | [SA-004](issues/SA-004.md) | Complete centralized typed tool metadata | — | — | M1 | P0 | SA-002 | in-progress |
 | [SA-005](issues/SA-005.md) | Implement the complete synthetic file tool family | — | — | M1 | P0 | SA-003, SA-004 | in-progress |
@@ -62,6 +62,8 @@ Backlog → Ready → In Progress → In Review → Done. `in-progress` includes
 | [SA-048](issues/SA-048.md) | Verify eight demonstrations and final deliverable checklist | — | — | M8 | P0 | SA-040, SA-045, SA-046, SA-047 | backlog |
 
 ## Publication sequence
+
+SA-001 and SA-002 have local acceptance evidence in commit `2884417`; `done-local` means verified and committed locally. It does not mean a remote issue was created or closed. All other tickets retain their partial/backlog status; no complete milestone is claimed.
 
 1. Authenticate GitHub CLI and confirm the intended owner and repository.
 2. Publish the local repository as `safeagent`, preserving commit history.

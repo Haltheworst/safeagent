@@ -109,7 +109,8 @@
         "priority:P0",
         "component:infrastructure"
       ],
-      "status": "in-progress",
+      "status": "done-local",
+      "verification_commit": "2884417",
       "remote_number": null,
       "remote_url": null,
       "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
@@ -145,7 +146,8 @@
         "priority:P0",
         "component:sandbox"
       ],
-      "status": "in-progress",
+      "status": "done-local",
+      "verification_commit": "2884417",
       "remote_number": null,
       "remote_url": null,
       "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."

@@ -21,6 +21,8 @@ Date: 2026-09-22. Local platform: Windows 11 (10.0.26200), Python 3.13.5, Node.j
 
 ## Limits and remaining verification
 
+Initial source and prepared backlog were committed as `2884417`. Git metadata writes required a command-scoped safe-directory setting because the sandbox and approved shell use different Windows identities. Global Git settings were not changed. The initial signed-commit attempt failed because GPG keyboxd was unavailable; local commits use an invocation-only unsigned setting.
+
 Connected browser inventory was empty and the in-app browser was unavailable, so visual/browser interaction acceptance and screenshots remain pending. This does not replace the completed frontend build and backend workflow tests. Unix instructions and the configured Windows/Linux CI matrix have not been executed on remote CI. No remote issue or repository publication has occurred. GitHub CLI authentication reported an invalid stored token.
 
 The installed Starlette test client emits dependency deprecation warnings for httpx and the AnyIO blocking portal alias. Tests passed with these warnings; dependency compatibility should be reviewed during the next dependency update.

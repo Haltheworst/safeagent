@@ -15,6 +15,8 @@ This is the first functioning vertical slice, not a completed project. [48 provi
 
 ## Next dependency-ready issue
 
+SA-001 and SA-002 are verified locally in commit `2884417`. Their acceptance evidence is recorded in the linked tickets; M1 as a whole remains in progress.
+
 SA-003: expand versioned synthetic fixtures for contacts, emails, calendar events and folder/file cases. Then complete SA-004 tool metadata coverage and SA-005–SA-007 application tools before the full model/baseline loop. Keep this foundation executable throughout.
 
 ## Board interpretation
