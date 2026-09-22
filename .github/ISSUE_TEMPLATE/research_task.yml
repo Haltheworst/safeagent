@@ -1,0 +1,23 @@
+name: Research task
+description: Specify a reproducible experiment or related-work investigation
+title: "[Research] "
+labels: ['type:research']
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Hypothesis and research question
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: Configurations, controls, data split, metrics, and limitations
+    validations:
+      required: true
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Reproducibility artifacts and acceptance criteria
+    validations:
+      required: true

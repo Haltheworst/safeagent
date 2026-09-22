@@ -1,0 +1,18 @@
+name: Bug report
+description: Report reproducible behavior in the synthetic sandbox
+title: "[Bug] "
+labels: ['type:bug']
+body:
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction and environment
+      description: Include revision, policy version, fixture, and commands. No secrets.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Expected and observed final state
+    validations:
+      required: true

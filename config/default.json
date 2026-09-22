@@ -1,0 +1,5 @@
+{
+  "version": "foundation-1",
+  "allowed_tools": ["read_file", "update_file"],
+  "max_title_length": 160
+}

@@ -1,0 +1,1888 @@
+{
+  "version": "spec-derived-1",
+  "provenance": "Individual 48 issue definitions were not included in the supplied specification. These provisional identifiers and boundaries are derived from its requirements; reconcile if the original backlog is provided.",
+  "milestones": [
+    {
+      "id": "M1",
+      "title": "M1 — Foundation and Sandbox",
+      "remote_number": null,
+      "remote_url": null
+    },
+    {
+      "id": "M2",
+      "title": "M2 — Functional LLM Agent",
+      "remote_number": null,
+      "remote_url": null
+    },
+    {
+      "id": "M3",
+      "title": "M3 — Runtime Policy Enforcement",
+      "remote_number": null,
+      "remote_url": null
+    },
+    {
+      "id": "M4",
+      "title": "M4 — Risk Detection and Approvals",
+      "remote_number": null,
+      "remote_url": null
+    },
+    {
+      "id": "M5",
+      "title": "M5 — Execution Monitoring and Recovery",
+      "remote_number": null,
+      "remote_url": null
+    },
+    {
+      "id": "M6",
+      "title": "M6 — Research Evaluation",
+      "remote_number": null,
+      "remote_url": null
+    },
+    {
+      "id": "M7",
+      "title": "M7 — Dashboard and Demonstration",
+      "remote_number": null,
+      "remote_url": null
+    },
+    {
+      "id": "M8",
+      "title": "M8 — Documentation and Release",
+      "remote_number": null,
+      "remote_url": null
+    }
+  ],
+  "labels": [
+    "type:feature",
+    "type:bug",
+    "type:research",
+    "type:testing",
+    "type:documentation",
+    "type:security",
+    "type:infrastructure",
+    "priority:P0",
+    "priority:P1",
+    "priority:P2",
+    "priority:P3",
+    "component:agent",
+    "component:runtime",
+    "component:policy",
+    "component:risk",
+    "component:execution",
+    "component:sandbox",
+    "component:evaluation",
+    "component:frontend",
+    "component:documentation",
+    "component:infrastructure",
+    "component:testing",
+    "status:blocked",
+    "status:ready",
+    "status:in-progress",
+    "status:needs-review"
+  ],
+  "issues": [
+    {
+      "planned_id": "SA-001",
+      "title": "Bootstrap the runnable project",
+      "objective": "Deliver bootstrap the runnable project as a verifiable part of the SafeAgent specification.",
+      "scope": "Packaging, CI, environment examples and source-checkout entry points",
+      "technical_requirements": [
+        "Install Python and frontend packages from clean checkouts",
+        "Start the API and connected frontend locally",
+        "Pass deterministic tests, lint, type checking and build"
+      ],
+      "acceptance_criteria": [
+        "Install Python and frontend packages from clean checkouts",
+        "Start the API and connected frontend locally",
+        "Pass deterministic tests, lint, type checking and build"
+      ],
+      "tests": [
+        "Installation smoke tests and CI configuration validation"
+      ],
+      "documentation": [
+        "docs/INSTALLATION.md"
+      ],
+      "dependencies": [],
+      "milestone": "M1",
+      "priority": "P0",
+      "labels": [
+        "type:infrastructure",
+        "priority:P0",
+        "component:infrastructure"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-002",
+      "title": "Add migrations, persistent storage and repeatable reset",
+      "objective": "Deliver add migrations, persistent storage and repeatable reset as a verifiable part of the SafeAgent specification.",
+      "scope": "SQLite engine configuration, SQLAlchemy models, migration lifecycle and fixture reset",
+      "technical_requirements": [
+        "Apply the initial Alembic migration twice without data loss",
+        "Persist file mutations and execution records across engine restart",
+        "Reset only known synthetic tables to stable fixtures"
+      ],
+      "acceptance_criteria": [
+        "Apply the initial Alembic migration twice without data loss",
+        "Persist file mutations and execution records across engine restart",
+        "Reset only known synthetic tables to stable fixtures"
+      ],
+      "tests": [
+        "Migration, restart, foreign-key and repeated-reset integration tests"
+      ],
+      "documentation": [
+        "docs/ARCHITECTURE.md"
+      ],
+      "dependencies": [
+        "SA-001"
+      ],
+      "milestone": "M1",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:sandbox"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-003",
+      "title": "Expand versioned synthetic application fixtures",
+      "objective": "Deliver expand versioned synthetic application fixtures as a verifiable part of the SafeAgent specification.",
+      "scope": "Versioned synthetic fixture generator covering every supported application domain",
+      "technical_requirements": [
+        "Seed email, contacts, calendar, folders and file resources with stable IDs",
+        "Include similar names, sensitivity levels and malicious retrieved content",
+        "Produce identical snapshots from the same seed and fixture version"
+      ],
+      "acceptance_criteria": [
+        "Seed email, contacts, calendar, folders and file resources with stable IDs",
+        "Include similar names, sensitivity levels and malicious retrieved content",
+        "Produce identical snapshots from the same seed and fixture version"
+      ],
+      "tests": [
+        "Golden fixture, seed reproducibility and fixture schema tests"
+      ],
+      "documentation": [
+        "docs/BENCHMARK_DESIGN.md"
+      ],
+      "dependencies": [
+        "SA-002"
+      ],
+      "milestone": "M1",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:sandbox"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-004",
+      "title": "Complete centralized typed tool metadata",
+      "objective": "Deliver complete centralized typed tool metadata as a verifiable part of the SafeAgent specification.",
+      "scope": "Registry metadata and discovery API with explicit callable dispatch",
+      "technical_requirements": [
+        "Register every implemented tool with argument and response schemas",
+        "Declare permissions, effects, idempotency, verification and retry metadata",
+        "Reject unknown tools and unexpected arguments before dispatch"
+      ],
+      "acceptance_criteria": [
+        "Register every implemented tool with argument and response schemas",
+        "Declare permissions, effects, idempotency, verification and retry metadata",
+        "Reject unknown tools and unexpected arguments before dispatch"
+      ],
+      "tests": [
+        "Registry completeness, schema rejection and dispatch isolation tests"
+      ],
+      "documentation": [
+        "docs/TOOL_REGISTRY.md"
+      ],
+      "dependencies": [
+        "SA-002"
+      ],
+      "milestone": "M1",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:sandbox"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-005",
+      "title": "Implement the complete synthetic file tool family",
+      "objective": "Deliver implement the complete synthetic file tool family as a verifiable part of the SafeAgent specification.",
+      "scope": "Explicit typed file operations with confined database access",
+      "technical_requirements": [
+        "Implement search, read, folder listing, create, update, delete and share",
+        "Persist ACLs, classifications and versioned changes",
+        "Verify actual content, deletion and share effects"
+      ],
+      "acceptance_criteria": [
+        "Implement search, read, folder listing, create, update, delete and share",
+        "Persist ACLs, classifications and versioned changes",
+        "Verify actual content, deletion and share effects"
+      ],
+      "tests": [
+        "CRUD, ownership, sharing, concurrency and observable-state tests"
+      ],
+      "documentation": [
+        "docs/TOOL_REGISTRY.md"
+      ],
+      "dependencies": [
+        "SA-003",
+        "SA-004"
+      ],
+      "milestone": "M1",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:sandbox"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-006",
+      "title": "Implement synthetic email tools and delivery records",
+      "objective": "Deliver implement synthetic email tools and delivery records as a verifiable part of the SafeAgent specification.",
+      "scope": "Email models, thread semantics and observable sandbox-only sends",
+      "technical_requirements": [
+        "Implement search, read, thread listing, send, reply and delete",
+        "Track recipient identities, attachments and synthetic delivery records",
+        "Expose committed delivery receipts without contacting real accounts"
+      ],
+      "acceptance_criteria": [
+        "Implement search, read, thread listing, send, reply and delete",
+        "Track recipient identities, attachments and synthetic delivery records",
+        "Expose committed delivery receipts without contacting real accounts"
+      ],
+      "tests": [
+        "Email mutation, thread, attachment and duplicate delivery tests"
+      ],
+      "documentation": [
+        "docs/TOOL_REGISTRY.md"
+      ],
+      "dependencies": [
+        "SA-003",
+        "SA-004"
+      ],
+      "milestone": "M1",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:sandbox"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-007",
+      "title": "Implement synthetic calendar tools and history",
+      "objective": "Deliver implement synthetic calendar tools and history as a verifiable part of the SafeAgent specification.",
+      "scope": "Calendar domain models with ownership, versions, history and notifications",
+      "technical_requirements": [
+        "Implement search, read, availability, create, update, delete and notify",
+        "Validate timezone-aware ranges and detect attendee conflicts",
+        "Store independent event history and notification effects"
+      ],
+      "acceptance_criteria": [
+        "Implement search, read, availability, create, update, delete and notify",
+        "Validate timezone-aware ranges and detect attendee conflicts",
+        "Store independent event history and notification effects"
+      ],
+      "tests": [
+        "Timezone, scheduling conflict, stale version and notification integration tests"
+      ],
+      "documentation": [
+        "docs/TOOL_REGISTRY.md"
+      ],
+      "dependencies": [
+        "SA-003",
+        "SA-004"
+      ],
+      "milestone": "M1",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:sandbox"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-008",
+      "title": "Introduce trusted sessions and confirmed task scopes",
+      "objective": "Deliver introduce trusted sessions and confirmed task scopes as a verifiable part of the SafeAgent specification.",
+      "scope": "Trusted task manager and explicit scope confirmation beyond the initial command grammar",
+      "technical_requirements": [
+        "Keep user identity outside model-generated proposals",
+        "Persist confirmed resource, operation, recipient and effect scope",
+        "Reject expired, revoked or cross-session scope use"
+      ],
+      "acceptance_criteria": [
+        "Keep user identity outside model-generated proposals",
+        "Persist confirmed resource, operation, recipient and effect scope",
+        "Reject expired, revoked or cross-session scope use"
+      ],
+      "tests": [
+        "Identity substitution, scope revocation and user confirmation API tests"
+      ],
+      "documentation": [
+        "docs/POLICY_ENGINE.md"
+      ],
+      "dependencies": [
+        "SA-002",
+        "SA-004"
+      ],
+      "milestone": "M2",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:agent"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-009",
+      "title": "Build deterministic mock and sandbox baseline modes",
+      "objective": "Deliver build deterministic mock and sandbox baseline modes as a verifiable part of the SafeAgent specification.",
+      "scope": "Mock planner and baseline semantics with explicit configuration",
+      "technical_requirements": [
+        "Run reproducible scripted agents through the common execution interface",
+        "Provide an unprotected baseline restricted to synthetic tools",
+        "Use identical fixture and planner inputs across both modes"
+      ],
+      "acceptance_criteria": [
+        "Run reproducible scripted agents through the common execution interface",
+        "Provide an unprotected baseline restricted to synthetic tools",
+        "Use identical fixture and planner inputs across both modes"
+      ],
+      "tests": [
+        "Paired-input, baseline confinement and deterministic transcript tests"
+      ],
+      "documentation": [
+        "docs/EVALUATION.md"
+      ],
+      "dependencies": [
+        "SA-005",
+        "SA-006",
+        "SA-007",
+        "SA-008"
+      ],
+      "milestone": "M2",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:agent"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-010",
+      "title": "Add configurable external model adapter",
+      "objective": "Deliver add configurable external model adapter as a verifiable part of the SafeAgent specification.",
+      "scope": "Model request/response contracts, transport, usage accounting and environment configuration",
+      "technical_requirements": [
+        "Implement an abstract adapter and one OpenAI-compatible provider",
+        "Configure endpoint, model, temperature, budgets and bounded retries without secrets in logs",
+        "Separate provider errors from application-tool failures"
+      ],
+      "acceptance_criteria": [
+        "Implement an abstract adapter and one OpenAI-compatible provider",
+        "Configure endpoint, model, temperature, budgets and bounded retries without secrets in logs",
+        "Separate provider errors from application-tool failures"
+      ],
+      "tests": [
+        "Offline mocked transport, malformed response, retry limit and optional opt-in provider tests"
+      ],
+      "documentation": [
+        "docs/DEVELOPER_GUIDE.md"
+      ],
+      "dependencies": [
+        "SA-004",
+        "SA-008"
+      ],
+      "milestone": "M2",
+      "priority": "P1",
+      "labels": [
+        "type:feature",
+        "priority:P1",
+        "component:agent"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-011",
+      "title": "Implement bounded multi-step agent orchestration",
+      "objective": "Deliver implement bounded multi-step agent orchestration as a verifiable part of the SafeAgent specification.",
+      "scope": "Agent loop, model-independent controller and task ledger interface",
+      "technical_requirements": [
+        "Discover tools and propose subsequent actions from observations",
+        "Enforce maximum steps, cycle detection and stop on repeated denials",
+        "Report completion using actual task predicates instead of model claims"
+      ],
+      "acceptance_criteria": [
+        "Discover tools and propose subsequent actions from observations",
+        "Enforce maximum steps, cycle detection and stop on repeated denials",
+        "Report completion using actual task predicates instead of model claims"
+      ],
+      "tests": [
+        "Multi-step progression, cycle, denial and completion-predicate end-to-end tests"
+      ],
+      "documentation": [
+        "docs/ARCHITECTURE.md"
+      ],
+      "dependencies": [
+        "SA-009",
+        "SA-010"
+      ],
+      "milestone": "M2",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:agent"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-012",
+      "title": "Harden proposal validation and resolved targets",
+      "objective": "Deliver harden proposal validation and resolved targets as a verifiable part of the SafeAgent specification.",
+      "scope": "Action validator with canonical resolved targets and trust boundary metadata",
+      "technical_requirements": [
+        "Validate all ActionProposal and SafetyDecision fields",
+        "Resolve IDs against server resources without requiring invented IDs",
+        "Separate interface errors from policy denial and preserve provenance"
+      ],
+      "acceptance_criteria": [
+        "Validate all ActionProposal and SafetyDecision fields",
+        "Resolve IDs against server resources without requiring invented IDs",
+        "Separate interface errors from policy denial and preserve provenance"
+      ],
+      "tests": [
+        "Malformed IDs, forged flags, target substitution and schema property tests"
+      ],
+      "documentation": [
+        "docs/POLICY_ENGINE.md"
+      ],
+      "dependencies": [
+        "SA-004",
+        "SA-008"
+      ],
+      "milestone": "M3",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:runtime"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-013",
+      "title": "Enforce operation and resource permissions",
+      "objective": "Deliver enforce operation and resource permissions as a verifiable part of the SafeAgent specification.",
+      "scope": "Deterministic operation and resource policy rules",
+      "technical_requirements": [
+        "Require both operation permission and concrete resource ACL",
+        "Check every read and write through the gateway",
+        "Ensure denied actions produce zero tool calls and no state changes"
+      ],
+      "acceptance_criteria": [
+        "Require both operation permission and concrete resource ACL",
+        "Check every read and write through the gateway",
+        "Ensure denied actions produce zero tool calls and no state changes"
+      ],
+      "tests": [
+        "Observed-state authorization matrix and tool invocation spy tests"
+      ],
+      "documentation": [
+        "docs/POLICY_ENGINE.md"
+      ],
+      "dependencies": [
+        "SA-008",
+        "SA-012"
+      ],
+      "milestone": "M3",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:policy"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-014",
+      "title": "Bind task authorization to concrete effects",
+      "objective": "Deliver bind task authorization to concrete effects as a verifiable part of the SafeAgent specification.",
+      "scope": "Task-scope policy rules for multi-domain operations and argument binding",
+      "technical_requirements": [
+        "Limit resources and effects to the trusted user task",
+        "Prevent read access from granting send, share or delete authority",
+        "Reject equivalent proposals following user denial"
+      ],
+      "acceptance_criteria": [
+        "Limit resources and effects to the trusted user task",
+        "Prevent read access from granting send, share or delete authority",
+        "Reject equivalent proposals following user denial"
+      ],
+      "tests": [
+        "Payload, resource, recipient and denied-task substitution tests"
+      ],
+      "documentation": [
+        "docs/POLICY_ENGINE.md"
+      ],
+      "dependencies": [
+        "SA-012",
+        "SA-013"
+      ],
+      "milestone": "M3",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:policy"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-015",
+      "title": "Enforce data sensitivity and recipient restrictions",
+      "objective": "Deliver enforce data sensitivity and recipient restrictions as a verifiable part of the SafeAgent specification.",
+      "scope": "Non-overridable disclosure policies using trusted recipient and resource metadata",
+      "technical_requirements": [
+        "Resolve internal, external, self, approved and unknown recipients",
+        "Apply PUBLIC, INTERNAL, CONFIDENTIAL and RESTRICTED disclosure boundaries",
+        "Track disclosed attachments and referenced source data"
+      ],
+      "acceptance_criteria": [
+        "Resolve internal, external, self, approved and unknown recipients",
+        "Apply PUBLIC, INTERNAL, CONFIDENTIAL and RESTRICTED disclosure boundaries",
+        "Track disclosed attachments and referenced source data"
+      ],
+      "tests": [
+        "Exfiltration, attachment, unknown contact and sensitivity boundary tests"
+      ],
+      "documentation": [
+        "docs/THREAT_MODEL.md"
+      ],
+      "dependencies": [
+        "SA-005",
+        "SA-006",
+        "SA-013",
+        "SA-014"
+      ],
+      "milestone": "M3",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:policy"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-016",
+      "title": "Implement policy configuration and decision precedence",
+      "objective": "Deliver implement policy configuration and decision precedence as a verifiable part of the SafeAgent specification.",
+      "scope": "Deterministic coordinator and declarative policy extensions",
+      "technical_requirements": [
+        "Load validated default and strict policy configurations",
+        "Evaluate mandatory denials before clarification or approval",
+        "Attach stable rule IDs and explanations to all policy decisions"
+      ],
+      "acceptance_criteria": [
+        "Load validated default and strict policy configurations",
+        "Evaluate mandatory denials before clarification or approval",
+        "Attach stable rule IDs and explanations to all policy decisions"
+      ],
+      "tests": [
+        "Configuration validation and BLOCK-over-recommendation precedence tests"
+      ],
+      "documentation": [
+        "docs/POLICY_ENGINE.md"
+      ],
+      "dependencies": [
+        "SA-013",
+        "SA-014",
+        "SA-015"
+      ],
+      "milestone": "M3",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:policy"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-017",
+      "title": "Consolidate the protected gateway and audit boundary",
+      "objective": "Deliver consolidate the protected gateway and audit boundary as a verifiable part of the SafeAgent specification.",
+      "scope": "Gateway capability boundary and structured audit events",
+      "technical_requirements": [
+        "Route all agent reads and writes through one execution entry point",
+        "Persist proposal, decision, attempt and observed outcome separately",
+        "Redact sensitive content while preserving useful source references"
+      ],
+      "acceptance_criteria": [
+        "Route all agent reads and writes through one execution entry point",
+        "Persist proposal, decision, attempt and observed outcome separately",
+        "Redact sensitive content while preserving useful source references"
+      ],
+      "tests": [
+        "Bypass attempts, tool spies, audit redaction and durable intent tests"
+      ],
+      "documentation": [
+        "docs/ARCHITECTURE.md"
+      ],
+      "dependencies": [
+        "SA-011",
+        "SA-012",
+        "SA-016"
+      ],
+      "milestone": "M3",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:runtime"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-018",
+      "title": "Complete adversarial authorization regression suite",
+      "objective": "Deliver complete adversarial authorization regression suite as a verifiable part of the SafeAgent specification.",
+      "scope": "Security test harness for trusted boundary and policy enforcement",
+      "technical_requirements": [
+        "Cover all ten required core security invariants",
+        "Use snapshots and invocation counters to verify forbidden effects are absent",
+        "Fuzz malformed claims and argument substitutions"
+      ],
+      "acceptance_criteria": [
+        "Cover all ten required core security invariants",
+        "Use snapshots and invocation counters to verify forbidden effects are absent",
+        "Fuzz malformed claims and argument substitutions"
+      ],
+      "tests": [
+        "Property-based authorization and end-to-end prompt-induced proposal tests"
+      ],
+      "documentation": [
+        "docs/SECURITY_LIMITATIONS.md"
+      ],
+      "dependencies": [
+        "SA-015",
+        "SA-016",
+        "SA-017"
+      ],
+      "milestone": "M3",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:runtime"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-019",
+      "title": "Implement deterministic risk feature extraction",
+      "objective": "Deliver implement deterministic risk feature extraction as a verifiable part of the SafeAgent specification.",
+      "scope": "Replaceable deterministic risk detector contracts and feature extraction",
+      "technical_requirements": [
+        "Extract resource, sensitivity, recipient, sequence and execution-state features",
+        "Keep operational uncertainty distinct from classifier confidence",
+        "Produce stable typed features without using untrusted claims as grants"
+      ],
+      "acceptance_criteria": [
+        "Extract resource, sensitivity, recipient, sequence and execution-state features",
+        "Keep operational uncertainty distinct from classifier confidence",
+        "Produce stable typed features without using untrusted claims as grants"
+      ],
+      "tests": [
+        "Feature fixtures and per-category deterministic detector tests"
+      ],
+      "documentation": [
+        "docs/RISK_DETECTION.md"
+      ],
+      "dependencies": [
+        "SA-017"
+      ],
+      "milestone": "M4",
+      "priority": "P1",
+      "labels": [
+        "type:feature",
+        "priority:P1",
+        "component:risk"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-020",
+      "title": "Resolve consequential resource ambiguity",
+      "objective": "Deliver resolve consequential resource ambiguity as a verifiable part of the SafeAgent specification.",
+      "scope": "Resource ambiguity rules using trusted selection and search evidence",
+      "technical_requirements": [
+        "Require clarification when target intent is unresolved",
+        "Respect exact trusted IDs despite unrelated search hits",
+        "Return safe candidate metadata only for accessible resources"
+      ],
+      "acceptance_criteria": [
+        "Require clarification when target intent is unresolved",
+        "Respect exact trusted IDs despite unrelated search hits",
+        "Return safe candidate metadata only for accessible resources"
+      ],
+      "tests": [
+        "Similar-name, exact-ID and inaccessible-candidate tests"
+      ],
+      "documentation": [
+        "docs/RISK_DETECTION.md"
+      ],
+      "dependencies": [
+        "SA-019"
+      ],
+      "milestone": "M4",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:risk"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-021",
+      "title": "Persist clarification requests and resume tasks",
+      "objective": "Deliver persist clarification requests and resume tasks as a verifiable part of the SafeAgent specification.",
+      "scope": "Clarification controller, request storage and resume API",
+      "technical_requirements": [
+        "Suspend the affected task while clarification is pending",
+        "Bind authenticated user selection to a concrete resource ID",
+        "Reevaluate the resumed proposal with updated trusted scope"
+      ],
+      "acceptance_criteria": [
+        "Suspend the affected task while clarification is pending",
+        "Bind authenticated user selection to a concrete resource ID",
+        "Reevaluate the resumed proposal with updated trusted scope"
+      ],
+      "tests": [
+        "Spoofed answers, invalid candidate, cross-task response and resume integration tests"
+      ],
+      "documentation": [
+        "docs/USER_GUIDE.md"
+      ],
+      "dependencies": [
+        "SA-008",
+        "SA-011",
+        "SA-020"
+      ],
+      "milestone": "M4",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:runtime"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-022",
+      "title": "Implement exact-action approval lifecycle",
+      "objective": "Deliver implement exact-action approval lifecycle as a verifiable part of the SafeAgent specification.",
+      "scope": "Approval requests, single-use grants, expiry, revocation and canonical fingerprints",
+      "technical_requirements": [
+        "Bind approval to canonical action, arguments, resource version and recipients",
+        "Reject denied, expired, consumed or modified grants",
+        "Allow only the trusted user channel to approve, deny or cancel"
+      ],
+      "acceptance_criteria": [
+        "Bind approval to canonical action, arguments, resource version and recipients",
+        "Reject denied, expired, consumed or modified grants",
+        "Allow only the trusted user channel to approve, deny or cancel"
+      ],
+      "tests": [
+        "Forgery, replay, payload substitution, version change and approval property tests"
+      ],
+      "documentation": [
+        "docs/POLICY_ENGINE.md"
+      ],
+      "dependencies": [
+        "SA-015",
+        "SA-016",
+        "SA-017"
+      ],
+      "milestone": "M4",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:runtime"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-023",
+      "title": "Connect destructive and disclosure approval rules",
+      "objective": "Deliver connect destructive and disclosure approval rules as a verifiable part of the SafeAgent specification.",
+      "scope": "Destructive operation and external-sharing approval policies",
+      "technical_requirements": [
+        "Request approval only for otherwise eligible actions",
+        "Show exact resource, destination, sensitivity and expected effect",
+        "Apply strict non-overridable policy before requesting approval"
+      ],
+      "acceptance_criteria": [
+        "Request approval only for otherwise eligible actions",
+        "Show exact resource, destination, sensitivity and expected effect",
+        "Apply strict non-overridable policy before requesting approval"
+      ],
+      "tests": [
+        "Approved disclosure, hard denial and destructive action API tests"
+      ],
+      "documentation": [
+        "docs/POLICY_ENGINE.md"
+      ],
+      "dependencies": [
+        "SA-015",
+        "SA-022"
+      ],
+      "milestone": "M4",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:policy"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-024",
+      "title": "Add sequence and dependency risk checks",
+      "objective": "Deliver add sequence and dependency risk checks as a verifiable part of the SafeAgent specification.",
+      "scope": "Sequence-aware deterministic risk checks integrated with task ledger",
+      "technical_requirements": [
+        "Detect action sequences inconsistent with confirmed task scope",
+        "Prevent dependent mutations before prerequisites are verified",
+        "Preserve provenance across retrieved and model-generated evidence"
+      ],
+      "acceptance_criteria": [
+        "Detect action sequences inconsistent with confirmed task scope",
+        "Prevent dependent mutations before prerequisites are verified",
+        "Preserve provenance across retrieved and model-generated evidence"
+      ],
+      "tests": [
+        "Multi-step laundering, missing prerequisite and harmless sequence tests"
+      ],
+      "documentation": [
+        "docs/RISK_DETECTION.md"
+      ],
+      "dependencies": [
+        "SA-019",
+        "SA-021",
+        "SA-023"
+      ],
+      "milestone": "M4",
+      "priority": "P1",
+      "labels": [
+        "type:feature",
+        "priority:P1",
+        "component:risk"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-025",
+      "title": "Evaluate risk decisions and interaction correctness",
+      "objective": "Deliver evaluate risk decisions and interaction correctness as a verifiable part of the SafeAgent specification.",
+      "scope": "Interaction-focused risk and approval acceptance suite",
+      "technical_requirements": [
+        "Test clarification and approval as distinct workflows",
+        "Include unnecessary-interaction and missed-ambiguity failures",
+        "Verify denial cannot be bypassed through repeated equivalent requests"
+      ],
+      "acceptance_criteria": [
+        "Test clarification and approval as distinct workflows",
+        "Include unnecessary-interaction and missed-ambiguity failures",
+        "Verify denial cannot be bypassed through repeated equivalent requests"
+      ],
+      "tests": [
+        "Full decision matrix, user denial and resume end-to-end tests"
+      ],
+      "documentation": [
+        "docs/EVALUATION.md"
+      ],
+      "dependencies": [
+        "SA-020",
+        "SA-021",
+        "SA-022",
+        "SA-023",
+        "SA-024"
+      ],
+      "milestone": "M4",
+      "priority": "P1",
+      "labels": [
+        "type:testing",
+        "priority:P1",
+        "component:testing"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-026",
+      "title": "Persist execution lifecycle and task ledger",
+      "objective": "Deliver persist execution lifecycle and task ledger as a verifiable part of the SafeAgent specification.",
+      "scope": "Durable state machine, execution monitor and task step ledger",
+      "technical_requirements": [
+        "Enforce the complete execution transition graph",
+        "Persist attempts, timing, receipts, errors and verified outcomes",
+        "Represent task dependencies and partial completion without claiming atomic workflows"
+      ],
+      "acceptance_criteria": [
+        "Enforce the complete execution transition graph",
+        "Persist attempts, timing, receipts, errors and verified outcomes",
+        "Represent task dependencies and partial completion without claiming atomic workflows"
+      ],
+      "tests": [
+        "Invalid transition, restart, failed prerequisite and partial report tests"
+      ],
+      "documentation": [
+        "docs/EXECUTION_RECOVERY.md"
+      ],
+      "dependencies": [
+        "SA-017"
+      ],
+      "milestone": "M5",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:execution"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-027",
+      "title": "Implement reproducible before-and-after fault injection",
+      "objective": "Deliver implement reproducible before-and-after fault injection as a verifiable part of the SafeAgent specification.",
+      "scope": "Seeded fault schedules and explicit commit boundary hooks",
+      "technical_requirements": [
+        "Support all ten specified fault types",
+        "Schedule faults deterministically before execution or after commit",
+        "Keep fixture behavior independent from evaluation scenario labels"
+      ],
+      "acceptance_criteria": [
+        "Support all ten specified fault types",
+        "Schedule faults deterministically before execution or after commit",
+        "Keep fixture behavior independent from evaluation scenario labels"
+      ],
+      "tests": [
+        "Fault timing, repeatability and no-fault equivalence tests"
+      ],
+      "documentation": [
+        "docs/EXECUTION_RECOVERY.md"
+      ],
+      "dependencies": [
+        "SA-006",
+        "SA-007",
+        "SA-026"
+      ],
+      "milestone": "M5",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:execution"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-028",
+      "title": "Add persistent idempotency receipts",
+      "objective": "Deliver add persistent idempotency receipts as a verifiable part of the SafeAgent specification.",
+      "scope": "Sandbox idempotency storage and native-support declarations",
+      "technical_requirements": [
+        "Persist operation key, canonical arguments and committed result atomically",
+        "Return the existing result for matching repeated requests",
+        "Reject key reuse with changed payload and respect unsupported-tool metadata"
+      ],
+      "acceptance_criteria": [
+        "Persist operation key, canonical arguments and committed result atomically",
+        "Return the existing result for matching repeated requests",
+        "Reject key reuse with changed payload and respect unsupported-tool metadata"
+      ],
+      "tests": [
+        "Same-key repetition, changed payload, restart and duplicate-side-effect property tests"
+      ],
+      "documentation": [
+        "docs/EXECUTION_RECOVERY.md"
+      ],
+      "dependencies": [
+        "SA-006",
+        "SA-026"
+      ],
+      "milestone": "M5",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:execution"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-029",
+      "title": "Implement bounded error-aware recovery",
+      "objective": "Deliver implement bounded error-aware recovery as a verifiable part of the SafeAgent specification.",
+      "scope": "Recovery controller and safe retry constraints",
+      "technical_requirements": [
+        "Choose recovery strategy from error category and tool metadata",
+        "Bound transient retries with injectable exponential backoff",
+        "Stop permanent failures and route every replan through full policy checks"
+      ],
+      "acceptance_criteria": [
+        "Choose recovery strategy from error category and tool metadata",
+        "Bound transient retries with injectable exponential backoff",
+        "Stop permanent failures and route every replan through full policy checks"
+      ],
+      "tests": [
+        "Timeout-before-execution, rate limit, permanent failure and policy-preserving replan tests"
+      ],
+      "documentation": [
+        "docs/EXECUTION_RECOVERY.md"
+      ],
+      "dependencies": [
+        "SA-027",
+        "SA-028"
+      ],
+      "milestone": "M5",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:execution"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-030",
+      "title": "Reconcile unknown outcomes without blind retries",
+      "objective": "Deliver reconcile unknown outcomes without blind retries as a verifiable part of the SafeAgent specification.",
+      "scope": "Receipt lookup and authoritative reconciliation paths",
+      "technical_requirements": [
+        "Record OUTCOME_UNKNOWN for lost post-commit responses",
+        "Verify authoritative receipts or application state before retry",
+        "Keep unresolved outcomes unknown and escalate accurately"
+      ],
+      "acceptance_criteria": [
+        "Record OUTCOME_UNKNOWN for lost post-commit responses",
+        "Verify authoritative receipts or application state before retry",
+        "Keep unresolved outcomes unknown and escalate accurately"
+      ],
+      "tests": [
+        "Timeout-after-commit email, missing receipt and unknown outcome reporting tests"
+      ],
+      "documentation": [
+        "docs/EXECUTION_RECOVERY.md"
+      ],
+      "dependencies": [
+        "SA-028",
+        "SA-029"
+      ],
+      "milestone": "M5",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:execution"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-031",
+      "title": "Enforce concurrent version and dependency safety",
+      "objective": "Deliver enforce concurrent version and dependency safety as a verifiable part of the SafeAgent specification.",
+      "scope": "Optimistic concurrency, dependency ledger and consistency checks",
+      "technical_requirements": [
+        "Bind mutations and approvals to evaluated versions",
+        "Reject or revalidate concurrent stale updates",
+        "Block notifications after failed calendar updates and report independent effects"
+      ],
+      "acceptance_criteria": [
+        "Bind mutations and approvals to evaluated versions",
+        "Reject or revalidate concurrent stale updates",
+        "Block notifications after failed calendar updates and report independent effects"
+      ],
+      "tests": [
+        "Concurrent gateway, stale approval, prerequisite and partial notification tests"
+      ],
+      "documentation": [
+        "docs/EXECUTION_RECOVERY.md"
+      ],
+      "dependencies": [
+        "SA-024",
+        "SA-026",
+        "SA-029"
+      ],
+      "milestone": "M5",
+      "priority": "P0",
+      "labels": [
+        "type:feature",
+        "priority:P0",
+        "component:execution"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-032",
+      "title": "Complete recovery and partial-completion acceptance tests",
+      "objective": "Deliver complete recovery and partial-completion acceptance tests as a verifiable part of the SafeAgent specification.",
+      "scope": "Recovery regressions, restart cases and property-based state invariants",
+      "technical_requirements": [
+        "Verify all required recovery invariants against persistent application state",
+        "Prove timeout-after-commit does not duplicate delivery",
+        "Prove unknown outcomes never become unsupported completion claims"
+      ],
+      "acceptance_criteria": [
+        "Verify all required recovery invariants against persistent application state",
+        "Prove timeout-after-commit does not duplicate delivery",
+        "Prove unknown outcomes never become unsupported completion claims"
+      ],
+      "tests": [
+        "Full recovery and multi-step end-to-end test suite"
+      ],
+      "documentation": [
+        "docs/EXECUTION_RECOVERY.md"
+      ],
+      "dependencies": [
+        "SA-027",
+        "SA-028",
+        "SA-029",
+        "SA-030",
+        "SA-031"
+      ],
+      "milestone": "M5",
+      "priority": "P0",
+      "labels": [
+        "type:testing",
+        "priority:P0",
+        "component:testing"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-033",
+      "title": "Define benchmark records and independent state judges",
+      "objective": "Deliver define benchmark records and independent state judges as a verifiable part of the SafeAgent specification.",
+      "scope": "Versioned scenario schema, loader and independent state predicates",
+      "technical_requirements": [
+        "Validate all required scenario fields and fixture references",
+        "Judge allowed completion and forbidden effects from final state",
+        "Allow multiple valid action paths rather than one reference transcript"
+      ],
+      "acceptance_criteria": [
+        "Validate all required scenario fields and fixture references",
+        "Judge allowed completion and forbidden effects from final state",
+        "Allow multiple valid action paths rather than one reference transcript"
+      ],
+      "tests": [
+        "Scenario schema and oracle mutation tests"
+      ],
+      "documentation": [
+        "docs/BENCHMARK_DESIGN.md"
+      ],
+      "dependencies": [
+        "SA-009",
+        "SA-018",
+        "SA-025",
+        "SA-032"
+      ],
+      "milestone": "M6",
+      "priority": "P0",
+      "labels": [
+        "type:research",
+        "priority:P0",
+        "component:evaluation"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-034",
+      "title": "Build 200 grouped scenarios and frozen dataset splits",
+      "objective": "Deliver build 200 grouped scenarios and frozen dataset splits as a verifiable part of the SafeAgent specification.",
+      "scope": "Deterministic scenario generation with development, validation and held-out partitions",
+      "technical_requirements": [
+        "Create at least 200 distinct normal, attack, ambiguity, failure and approval cases",
+        "Group related payloads, tasks and fixture families before splitting",
+        "Record dataset versions and prevent held-out leakage"
+      ],
+      "acceptance_criteria": [
+        "Create at least 200 distinct normal, attack, ambiguity, failure and approval cases",
+        "Group related payloads, tasks and fixture families before splitting",
+        "Record dataset versions and prevent held-out leakage"
+      ],
+      "tests": [
+        "Scenario count, uniqueness, grouping, leakage and split stability tests"
+      ],
+      "documentation": [
+        "docs/BENCHMARK_DESIGN.md"
+      ],
+      "dependencies": [
+        "SA-033"
+      ],
+      "milestone": "M6",
+      "priority": "P1",
+      "labels": [
+        "type:research",
+        "priority:P1",
+        "component:evaluation"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-035",
+      "title": "Implement paired configurable experiment runner",
+      "objective": "Deliver implement paired configurable experiment runner as a verifiable part of the SafeAgent specification.",
+      "scope": "CLI/API evaluation runner with module switches and raw JSONL outputs",
+      "technical_requirements": [
+        "Reset equivalent state for every configuration and trial",
+        "Run BASELINE, POLICY_ONLY, POLICY_RISK, POLICY_RECOVERY and FULL_SAFEAGENT",
+        "Record seed, model parameters, policies, prompt version, dataset and code revision"
+      ],
+      "acceptance_criteria": [
+        "Reset equivalent state for every configuration and trial",
+        "Run BASELINE, POLICY_ONLY, POLICY_RISK, POLICY_RECOVERY and FULL_SAFEAGENT",
+        "Record seed, model parameters, policies, prompt version, dataset and code revision"
+      ],
+      "tests": [
+        "Paired initialization, independent ablation and repeatability integration tests"
+      ],
+      "documentation": [
+        "docs/EVALUATION.md"
+      ],
+      "dependencies": [
+        "SA-033",
+        "SA-034"
+      ],
+      "milestone": "M6",
+      "priority": "P0",
+      "labels": [
+        "type:research",
+        "priority:P0",
+        "component:evaluation"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-036",
+      "title": "Compute denominated metrics and statistical reports",
+      "objective": "Deliver compute denominated metrics and statistical reports as a verifiable part of the SafeAgent specification.",
+      "scope": "Metric definitions, reporting, cost metadata and uncertainty estimates",
+      "technical_requirements": [
+        "Compute safety, reliability, ambiguity and efficiency metrics with explicit denominators",
+        "Separate model proposals from executed forbidden side effects",
+        "Export raw records, CSV/Markdown summaries, intervals and paired comparisons"
+      ],
+      "acceptance_criteria": [
+        "Compute safety, reliability, ambiguity and efficiency metrics with explicit denominators",
+        "Separate model proposals from executed forbidden side effects",
+        "Export raw records, CSV/Markdown summaries, intervals and paired comparisons"
+      ],
+      "tests": [
+        "Hand-calculated metric fixtures, zero denominators, confidence intervals and paired-test checks"
+      ],
+      "documentation": [
+        "docs/EXPERIMENTAL_RESULTS.md"
+      ],
+      "dependencies": [
+        "SA-035"
+      ],
+      "milestone": "M6",
+      "priority": "P1",
+      "labels": [
+        "type:research",
+        "priority:P1",
+        "component:evaluation"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-037",
+      "title": "Evaluate prompt-injection families and model transfer",
+      "objective": "Deliver evaluate prompt-injection families and model transfer as a verifiable part of the SafeAgent specification.",
+      "scope": "Attack corpus and real-model experiment protocol",
+      "technical_requirements": [
+        "Cover all seven required attack scenarios plus obfuscation and encoded payloads",
+        "Record attacker surface, actual proposals, decisions and state-based attack success",
+        "Compare model or attack changes without claiming universal defense"
+      ],
+      "acceptance_criteria": [
+        "Cover all seven required attack scenarios plus obfuscation and encoded payloads",
+        "Record attacker surface, actual proposals, decisions and state-based attack success",
+        "Compare model or attack changes without claiming universal defense"
+      ],
+      "tests": [
+        "Attack record validation, forbidden-state oracles and optional provider trials"
+      ],
+      "documentation": [
+        "docs/THREAT_MODEL.md"
+      ],
+      "dependencies": [
+        "SA-010",
+        "SA-034",
+        "SA-035",
+        "SA-036"
+      ],
+      "milestone": "M6",
+      "priority": "P1",
+      "labels": [
+        "type:research",
+        "priority:P1",
+        "component:evaluation"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-038",
+      "title": "Train optional classical risk classifiers and calibration",
+      "objective": "Deliver train optional classical risk classifiers and calibration as a verifiable part of the SafeAgent specification.",
+      "scope": "Synthetic feature data, training pipeline, model artifact metadata and evaluation",
+      "technical_requirements": [
+        "Compare logistic regression and random forest with versioned feature contracts",
+        "Separate rule-generated labels from an independently manually reviewed subset",
+        "Report per-category errors, confusion matrix, Brier score and calibration"
+      ],
+      "acceptance_criteria": [
+        "Compare logistic regression and random forest with versioned feature contracts",
+        "Separate rule-generated labels from an independently manually reviewed subset",
+        "Report per-category errors, confusion matrix, Brier score and calibration"
+      ],
+      "tests": [
+        "Model loading, split leakage, deterministic training and policy-dominance tests"
+      ],
+      "documentation": [
+        "docs/RISK_DETECTION.md"
+      ],
+      "dependencies": [
+        "SA-019",
+        "SA-034",
+        "SA-036"
+      ],
+      "milestone": "M6",
+      "priority": "P2",
+      "labels": [
+        "type:feature",
+        "priority:P2",
+        "component:risk"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-039",
+      "title": "Add optional LLM risk evaluator and hybrid ablation",
+      "objective": "Deliver add optional llm risk evaluator and hybrid ablation as a verifiable part of the SafeAgent specification.",
+      "scope": "Optional semantic evaluator and A/B/C/D risk configurations",
+      "technical_requirements": [
+        "Mark retrieved data explicitly untrusted in evaluator inputs",
+        "Validate structured assessments and prevent credentials or tool access",
+        "Compare deterministic, ML, semantic and hybrid recommendations without overriding mandatory denial"
+      ],
+      "acceptance_criteria": [
+        "Mark retrieved data explicitly untrusted in evaluator inputs",
+        "Validate structured assessments and prevent credentials or tool access",
+        "Compare deterministic, ML, semantic and hybrid recommendations without overriding mandatory denial"
+      ],
+      "tests": [
+        "Evaluator forgery, malformed response, timeout and denial precedence tests"
+      ],
+      "documentation": [
+        "docs/RISK_DETECTION.md"
+      ],
+      "dependencies": [
+        "SA-010",
+        "SA-016",
+        "SA-019",
+        "SA-035",
+        "SA-038"
+      ],
+      "milestone": "M6",
+      "priority": "P2",
+      "labels": [
+        "type:feature",
+        "priority:P2",
+        "component:risk"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-040",
+      "title": "Analyze failures and publish reproducible research artifacts",
+      "objective": "Deliver analyze failures and publish reproducible research artifacts as a verifiable part of the SafeAgent specification.",
+      "scope": "Experimental report, controlled ablations and dated failure taxonomy",
+      "technical_requirements": [
+        "Classify unsafe acceptance, false blocks and unnecessary interactions by root cause",
+        "Report measured effects with limitations and raw artifact references",
+        "Keep held-out revisions and failures visible without fabricating significance"
+      ],
+      "acceptance_criteria": [
+        "Classify unsafe acceptance, false blocks and unnecessary interactions by root cause",
+        "Report measured effects with limitations and raw artifact references",
+        "Keep held-out revisions and failures visible without fabricating significance"
+      ],
+      "tests": [
+        "Report provenance, artifact consistency and reproducibility smoke tests"
+      ],
+      "documentation": [
+        "docs/EXPERIMENTAL_RESULTS.md"
+      ],
+      "dependencies": [
+        "SA-036",
+        "SA-037",
+        "SA-038",
+        "SA-039"
+      ],
+      "milestone": "M6",
+      "priority": "P1",
+      "labels": [
+        "type:research",
+        "priority:P1",
+        "component:evaluation"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-041",
+      "title": "Build connected responsive playground and resource inspector",
+      "objective": "Deliver build connected responsive playground and resource inspector as a verifiable part of the SafeAgent specification.",
+      "scope": "Responsive React/TypeScript/Tailwind interface backed by FastAPI",
+      "technical_requirements": [
+        "Submit actual user tasks and show provider/API errors",
+        "Inspect synthetic email, calendar and files before and after tasks",
+        "Support deliberate reset with clear history deletion notice"
+      ],
+      "acceptance_criteria": [
+        "Submit actual user tasks and show provider/API errors",
+        "Inspect synthetic email, calendar and files before and after tasks",
+        "Support deliberate reset with clear history deletion notice"
+      ],
+      "tests": [
+        "Frontend type/build checks and browser task/reset integration tests"
+      ],
+      "documentation": [
+        "docs/USER_GUIDE.md"
+      ],
+      "dependencies": [
+        "SA-008",
+        "SA-011",
+        "SA-017"
+      ],
+      "milestone": "M7",
+      "priority": "P1",
+      "labels": [
+        "type:feature",
+        "priority:P1",
+        "component:frontend"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-042",
+      "title": "Add decision timeline, approvals and clarification UI",
+      "objective": "Deliver add decision timeline, approvals and clarification ui as a verifiable part of the SafeAgent specification.",
+      "scope": "Interactive task timeline and trusted user response forms",
+      "technical_requirements": [
+        "Show all defined timeline events with rule IDs and structured details",
+        "Provide separate exact-action approval and candidate selection workflows",
+        "Clearly display blocked, recovering, unknown and partial states"
+      ],
+      "acceptance_criteria": [
+        "Show all defined timeline events with rule IDs and structured details",
+        "Provide separate exact-action approval and candidate selection workflows",
+        "Clearly display blocked, recovering, unknown and partial states"
+      ],
+      "tests": [
+        "Browser approval, denial, clarification and unknown-state tests"
+      ],
+      "documentation": [
+        "docs/USER_GUIDE.md"
+      ],
+      "dependencies": [
+        "SA-021",
+        "SA-022",
+        "SA-026",
+        "SA-041"
+      ],
+      "milestone": "M7",
+      "priority": "P1",
+      "labels": [
+        "type:feature",
+        "priority:P1",
+        "component:frontend"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-043",
+      "title": "Build paired baseline comparison and scenario explorer",
+      "objective": "Deliver build paired baseline comparison and scenario explorer as a verifiable part of the SafeAgent specification.",
+      "scope": "Comparison API and frontend scenario explorer",
+      "technical_requirements": [
+        "Run selected scenarios against equivalent initial state",
+        "Display actual proposals, executed actions, final state and completion",
+        "Expose eight mandatory demo categories with real traces"
+      ],
+      "acceptance_criteria": [
+        "Run selected scenarios against equivalent initial state",
+        "Display actual proposals, executed actions, final state and completion",
+        "Expose eight mandatory demo categories with real traces"
+      ],
+      "tests": [
+        "Equivalent-input comparison and scenario selection end-to-end tests"
+      ],
+      "documentation": [
+        "docs/USER_GUIDE.md"
+      ],
+      "dependencies": [
+        "SA-035",
+        "SA-037",
+        "SA-041"
+      ],
+      "milestone": "M7",
+      "priority": "P1",
+      "labels": [
+        "type:feature",
+        "priority:P1",
+        "component:frontend"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-044",
+      "title": "Implement measured evaluation analytics and export",
+      "objective": "Deliver implement measured evaluation analytics and export as a verifiable part of the SafeAgent specification.",
+      "scope": "Research dashboard charts, latency distributions and optional confusion matrix",
+      "technical_requirements": [
+        "Compute dashboard cards and charts from stored experiment records",
+        "Label axes, configuration, numerators and denominators",
+        "Show empty states before experiments and export actual results"
+      ],
+      "acceptance_criteria": [
+        "Compute dashboard cards and charts from stored experiment records",
+        "Label axes, configuration, numerators and denominators",
+        "Show empty states before experiments and export actual results"
+      ],
+      "tests": [
+        "Metric-to-chart consistency, empty-state and export integration tests"
+      ],
+      "documentation": [
+        "docs/EXPERIMENTAL_RESULTS.md"
+      ],
+      "dependencies": [
+        "SA-036",
+        "SA-040",
+        "SA-041"
+      ],
+      "milestone": "M7",
+      "priority": "P1",
+      "labels": [
+        "type:feature",
+        "priority:P1",
+        "component:frontend"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-045",
+      "title": "Add redacted audit filtering and complete browser acceptance",
+      "objective": "Deliver add redacted audit filtering and complete browser acceptance as a verifiable part of the SafeAgent specification.",
+      "scope": "Audit explorer, redacted export and browser acceptance suite",
+      "technical_requirements": [
+        "Filter by task, scenario, action, tool, decision, risk, state and time",
+        "Download redacted traces without credentials or unnecessary document contents",
+        "Verify responsive keyboard-accessible workflows and error states"
+      ],
+      "acceptance_criteria": [
+        "Filter by task, scenario, action, tool, decision, risk, state and time",
+        "Download redacted traces without credentials or unnecessary document contents",
+        "Verify responsive keyboard-accessible workflows and error states"
+      ],
+      "tests": [
+        "Filter accuracy, redaction and desktop/mobile workflow tests"
+      ],
+      "documentation": [
+        "docs/USER_GUIDE.md"
+      ],
+      "dependencies": [
+        "SA-026",
+        "SA-042",
+        "SA-043",
+        "SA-044"
+      ],
+      "milestone": "M7",
+      "priority": "P1",
+      "labels": [
+        "type:feature",
+        "priority:P1",
+        "component:frontend"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-046",
+      "title": "Complete related-work review and technical documentation",
+      "objective": "Deliver complete related-work review and technical documentation as a verifiable part of the SafeAgent specification.",
+      "scope": "Source-grounded project documentation and academic research notes",
+      "technical_requirements": [
+        "Document architecture, guarantees, assumptions and residual risks accurately",
+        "Review primary related work without unsupported novelty claims",
+        "Update README, install guide, research notes and author/citation metadata"
+      ],
+      "acceptance_criteria": [
+        "Document architecture, guarantees, assumptions and residual risks accurately",
+        "Review primary related work without unsupported novelty claims",
+        "Update README, install guide, research notes and author/citation metadata"
+      ],
+      "tests": [
+        "Documentation link, command, citation and feature-claim review"
+      ],
+      "documentation": [
+        "docs/RESEARCH_NOTES.md"
+      ],
+      "dependencies": [
+        "SA-018",
+        "SA-032",
+        "SA-040",
+        "SA-045"
+      ],
+      "milestone": "M8",
+      "priority": "P1",
+      "labels": [
+        "type:documentation",
+        "priority:P1",
+        "component:documentation"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-047",
+      "title": "Publish repository management and reproducible release workflow",
+      "objective": "Deliver publish repository management and reproducible release workflow as a verifiable part of the SafeAgent specification.",
+      "scope": "GitHub publication, project board when supported and release automation",
+      "technical_requirements": [
+        "Create confirmed remote repository, milestones, labels and all 48 mapped issues",
+        "Preserve meaningful commits and pass CI before release",
+        "Provide packaging, optional containers and tested cross-platform release instructions"
+      ],
+      "acceptance_criteria": [
+        "Create confirmed remote repository, milestones, labels and all 48 mapped issues",
+        "Preserve meaningful commits and pass CI before release",
+        "Provide packaging, optional containers and tested cross-platform release instructions"
+      ],
+      "tests": [
+        "Remote mapping, clean checkout, dependency security and release smoke checks"
+      ],
+      "documentation": [
+        "docs/GITHUB_ISSUES.md"
+      ],
+      "dependencies": [
+        "SA-001",
+        "SA-046"
+      ],
+      "milestone": "M8",
+      "priority": "P1",
+      "labels": [
+        "type:infrastructure",
+        "priority:P1",
+        "component:infrastructure"
+      ],
+      "status": "in-progress",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    },
+    {
+      "planned_id": "SA-048",
+      "title": "Verify eight demonstrations and final deliverable checklist",
+      "objective": "Deliver verify eight demonstrations and final deliverable checklist as a verifiable part of the SafeAgent specification.",
+      "scope": "Final acceptance demonstration and release audit",
+      "technical_requirements": [
+        "Run every mandatory demonstration through the actual system",
+        "Verify source, tests, benchmark, dashboard and documentation together",
+        "Record unresolved limitations and evidence before declaring completion"
+      ],
+      "acceptance_criteria": [
+        "Run every mandatory demonstration through the actual system",
+        "Verify source, tests, benchmark, dashboard and documentation together",
+        "Record unresolved limitations and evidence before declaring completion"
+      ],
+      "tests": [
+        "Complete offline suite, optional live-model checks and reproducible benchmark rerun"
+      ],
+      "documentation": [
+        "docs/VERIFICATION.md"
+      ],
+      "dependencies": [
+        "SA-040",
+        "SA-045",
+        "SA-046",
+        "SA-047"
+      ],
+      "milestone": "M8",
+      "priority": "P0",
+      "labels": [
+        "type:testing",
+        "priority:P0",
+        "component:testing"
+      ],
+      "status": "backlog",
+      "remote_number": null,
+      "remote_url": null,
+      "definition_of_done": "Implementation complete, acceptance criteria verified, required checks passing, documentation updated, and changes committed."
+    }
+  ]
+}

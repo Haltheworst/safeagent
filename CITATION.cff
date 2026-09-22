@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, cite this source project. Replace author placeholders before publication."
+title: "SafeAgent: A Risk-Aware Runtime Safety and Reliability Framework for Tool-Using LLM Agents"
+type: software
+version: 0.1.0
+date-released: 2026-09-22
+license: MIT
+authors:
+  - name: "SafeAgent contributors (replace with student author)"
+abstract: "An undergraduate research prototype for independent authorization and verified execution of sandboxed agent tool proposals."
